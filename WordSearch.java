@@ -13,39 +13,6 @@ public class WordSearch {
         startGame();
     } // end of main
 
-    // start of startGame
-    public static void startGame() {
-        boolean generated = false;
-        Scanner console = new Scanner(System.in);
-        String choice;
-        WordSearch search = new WordSearch();
-        do {
-            intro();
-            choice = console.next();
-            if(choice.equals("g")) {
-                System.out.println("Enter Each Word Line by Line. When finished, enter \"q\"");
-                String tok = console.next();
-                ArrayList<String> wordsAR = new ArrayList<String>();
-                do {
-                    wordsAR.add(tok);
-                    tok = console.next();
-                }while(!tok.equals("q"));
-                String[] word = new String[wordsAR.size()];
-                wordsAR.toArray(word);
-                search.generate(word);
-                generated = true;
-            } else if(choice.equals("p")) {
-                if(generated){
-                    print(search);
-                }
-            } else if(choice.equals("s")) {
-                if(generated){
-                    showSolution(search);
-                }
-            }
-        } while(!choice.equals("q"));
-
-    } // end of startGame
 
     // start of intro
     public static void intro(){
@@ -150,6 +117,40 @@ public class WordSearch {
         this.solution = new boolean[longest + 4][longest + 4];
         return wordChars;
     } // end of setup
+
+    // start of startGame
+    public static void startGame() {
+        boolean generated = false;
+        Scanner console = new Scanner(System.in);
+        String choice;
+        WordSearch search = new WordSearch();
+        do {
+            intro();
+            choice = console.next();
+            if(choice.equals("g")) {
+                System.out.println("Enter Each Word Line by Line. When finished, enter \"q\"");
+                String tok = console.next();
+                ArrayList<String> wordsAR = new ArrayList<String>();
+                do {
+                    wordsAR.add(tok);
+                    tok = console.next();
+                }while(!tok.equals("q"));
+                String[] word = new String[wordsAR.size()];
+                wordsAR.toArray(word);
+                search.generate(word);
+                generated = true;
+            } else if(choice.equals("p")) {
+                if(generated){
+                    print(search);
+                }
+            } else if(choice.equals("s")) {
+                if(generated){
+                    showSolution(search);
+                }
+            }
+        } while(!choice.equals("q"));
+
+    } // end of startGame
 
     // start of vertical
     private void vertical(char[][] wordChars, int iter, Random rand, int[] pos){
